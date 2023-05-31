@@ -16,11 +16,5 @@ def main():
         return str(ve)
 
 
-# class Main:
-#     def __init__(self):
-#         scanner = lexico.ler_arquivo('teste_lexico.txt')
-#         lex = lexico.Lexico()
-
-
 if __name__ == "__main__":
     sys.exit(main())
