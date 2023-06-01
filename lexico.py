@@ -191,7 +191,8 @@ def get_nex_token(info):
             case 8:
                 tk = Token('COMENTARIO', tk_value)
                 pos -= 1
-                return tk
+                # return tk
+                state = 0
             case 9:
                 tk = Token('EXPO', tk_value)
                 pos -= 1
@@ -311,7 +312,9 @@ def get_nex_token(info):
                 tk_value = tk_value[:-1]
                 tk = Token('WS', tk_value)
                 pos -= 2
-                return tk
+                tk_value = ''
+                state = 0
+                # return tk
             case 32:
                 if verifica_numero(c):
                     state = 32

@@ -2,6 +2,7 @@ import numpy as np
 import csv
 import lexico as lex
 
+
 # csv_filename = 'my_file.csv'
 # with open(csv_filename) as f:
 #     reader = csv.reader(f)
@@ -32,17 +33,18 @@ class Sintatico:
 
         while len(self.stack) > 0:
             top = self.stack[-1]
-            if top in self.table and self.current_token in self.table[top]:
-                production = self.table[top][self.current_token]
+            if top in self.table and self.current_token.type.lower() in self.table[top]:
+                production = self.table[top][self.current_token.type.lower()]
+                next_symbl = list(self.table)[int(production)]
                 self.stack.pop()
                 if production != "epsilon":
-                    production_symbols = production.split()[::-1]
-                    self.stack.extend(production_symbols)
+                    production_symbols = next_symbl
+                    self.stack.append(production_symbols)
             elif top == self.current_token:
                 self.stack.pop()
                 self.current_token = lex.get_nex_token(expression)
             else:
-                raise Exception("Erro de sintaxe. Token inesperado: " + self.current_token)
+                raise Exception("Erro de sintaxe. Token inesperado: " + self.current_token.type.lower())
 
         if self.current_token is None:
             print("Análise sintática concluída com sucesso.")
@@ -51,8 +53,8 @@ class Sintatico:
 
 
 # Exemplo de uso
-filename = "tabela_analise.csv"
-expression = "a + b * c"
+filename = "tabelaAnalisePreditiva.csv"
+expression = "function () {a + b * c}"
 
 parser = Sintatico(filename)
 parser.parse(expression)
