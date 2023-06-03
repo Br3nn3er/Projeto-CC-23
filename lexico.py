@@ -44,7 +44,7 @@ def ler_arquivo(nome_arquivo):
 
 
 def get_nex_token(info):
-    Token = namedtuple("Token", ["type", "value"])
+    Token = namedtuple("Token", ["type", "value", "sint"])
     state = 0
 
     global pos
@@ -148,15 +148,15 @@ def get_nex_token(info):
                 else:
                     raise Exception(f"Illegal character at line {line}: {c}")
             case 1:
-                tk = Token('MAIS', tk_value)
+                tk = Token('MAIS', tk_value, '+')
                 pos -= 1
                 return tk
             case 2:
-                tk = Token('MENOS', tk_value)
+                tk = Token('MENOS', tk_value, '-')
                 pos -= 1
                 return tk
             case 3:
-                tk = Token('MULT', tk_value)
+                tk = Token('MULT', tk_value, '*')
                 pos -= 1
                 return tk
             case 4:
@@ -170,7 +170,7 @@ def get_nex_token(info):
                     raise Exception(f"Illegal character at line {line}: {c}")
             case 5:
                 tk_value = tk_value[:-1]
-                tk = Token('DIV', tk_value)
+                tk = Token('DIV', tk_value, '/')
                 pos -= 2
                 return tk
             case 6:
@@ -189,44 +189,44 @@ def get_nex_token(info):
                 else:
                     raise Exception(f"Illegal character at line {line}: {c}")
             case 8:
-                tk = Token('COMENTARIO', tk_value)
+                tk = Token('COMENTARIO', tk_value, 'comment')
                 pos -= 1
                 # return tk
                 state = 0
             case 9:
-                tk = Token('EXPO', tk_value)
+                tk = Token('EXPO', tk_value, '^')
                 pos -= 1
                 return tk
             case 10:
-                tk = Token('PONTO_VIRG', tk_value)
+                tk = Token('PONTO_VIRG', tk_value, ';')
                 pos -= 1
                 return tk
             case 11:
-                tk = Token('VIRGULA', tk_value)
+                tk = Token('VIRGULA', tk_value, ',')
                 pos -= 1
                 return tk
             case 12:
-                tk = Token('DOIS_PONTOS', tk_value)
+                tk = Token('DOIS_PONTOS', tk_value, ':')
                 pos -= 1
                 return tk
             case 13:
-                tk = Token('ABRE_COLCHETE', tk_value)
+                tk = Token('ABRE_COLCHETE', tk_value, '[')
                 pos -= 1
                 return tk
             case 14:
-                tk = Token('FECHA_COLCHETE', tk_value)
+                tk = Token('FECHA_COLCHETE', tk_value, ']')
                 pos -= 1
                 return tk
             case 15:
-                tk = Token('FECHA_PARENTESE', tk_value)
+                tk = Token('FECHA_PARENTESE', tk_value, ')')
                 pos -= 1
                 return tk
             case 16:
-                tk = Token('ABRE_PARENTESE', tk_value)
+                tk = Token('ABRE_PARENTESE', tk_value, '(')
                 pos -= 1
                 return tk
             case 17:
-                tk = Token('IGUAL', tk_value)
+                tk = Token('IGUAL', tk_value, '=')
                 pos -= 1
                 return tk
             case 18:
@@ -240,11 +240,11 @@ def get_nex_token(info):
                     raise Exception(f"Illegal character at line {line}: {c}")
             case 19:
                 tk_value = tk_value[:-1]
-                tk = Token('MAIOR', tk_value)
+                tk = Token('MAIOR', tk_value, '>')
                 pos -= 2
                 return tk
             case 20:
-                tk = Token('MAIOR_IGUAL', tk_value)
+                tk = Token('MAIOR_IGUAL', tk_value, '>=')
                 pos -= 1
                 return tk
             case 21:
@@ -261,23 +261,23 @@ def get_nex_token(info):
                     raise Exception(f"Illegal character at line {line}: {c}")
             case 22:
                 tk_value = tk_value[:-1]
-                tk = Token('MENOR', tk_value)
+                tk = Token('MENOR', tk_value, '<')
                 pos -= 2
                 return tk
             case 23:
-                tk = Token('DIFF', tk_value)
+                tk = Token('DIFF', tk_value, '!=')
                 pos -= 1
                 return tk
             case 24:
-                tk = Token('MENOR_IGUAL', tk_value)
+                tk = Token('MENOR_IGUAL', tk_value, '<=')
                 pos -= 1
                 return tk
             case 25:
-                tk = Token('ABRE_CHAVE', tk_value)
+                tk = Token('ABRE_CHAVE', tk_value, '{')
                 pos -= 1
                 return tk
             case 26:
-                tk = Token('FECHA_CHAVE', tk_value)
+                tk = Token('FECHA_CHAVE', tk_value, '}')
                 pos -= 1
                 return tk
             case 27:
@@ -294,7 +294,7 @@ def get_nex_token(info):
                     raise Exception(f"Illegal character at line {line}: {c}")
             case 29:
                 tk_value = tk_value[:-1]
-                tk = Token('CARACTERE', tk_value)
+                tk = Token('CARACTERE', tk_value, 'caracter')
                 pos -= 2
                 return tk
             case 30:
@@ -310,7 +310,7 @@ def get_nex_token(info):
                     raise Exception(f"Illegal character at line {line}: {c}")
             case 31:
                 tk_value = tk_value[:-1]
-                tk = Token('WS', tk_value)
+                tk = Token('WS', tk_value, 'ws')
                 pos -= 2
                 tk_value = ''
                 state = 0
@@ -332,7 +332,7 @@ def get_nex_token(info):
                     raise Exception(f"Illegal character at line {line}: {c}")
             case 33:
                 tk_value = tk_value[:-1]
-                tk = Token('INTEIRO', tk_value)
+                tk = Token('INTEIRO', tk_value, 'num_int')
                 pos -= 2
                 return tk
             case 34:
@@ -352,7 +352,7 @@ def get_nex_token(info):
                     raise Exception(f"Illegal character at line {line}: {c}")
             case 36:
                 tk_value = tk_value[:-1]
-                tk = Token('DECIMAL', tk_value)
+                tk = Token('DECIMAL', tk_value, 'num_float')
                 pos -= 2
                 return tk
             case 37:
@@ -381,7 +381,7 @@ def get_nex_token(info):
                     raise Exception(f"Illegal character at line {line}: {c}")
             case 40:
                 tk_value = tk_value[:-1]
-                tk = Token('CIENTIFICO', tk_value)
+                tk = Token('CIENTIFICO', tk_value, 'num_cient')
                 pos -= 2
                 return tk
             case 41:
@@ -461,7 +461,7 @@ def get_nex_token(info):
                     raise Exception(f"Illegal character at line {line}: {c}")
             case 49:
                 tk_value = tk_value[:-1]
-                tk = Token('ENQUANTO', tk_value)
+                tk = Token('ENQUANTO', tk_value, 'enquanto')
                 pos -= 2
                 return tk
             case 50:
@@ -493,7 +493,7 @@ def get_nex_token(info):
                     raise Exception(f"Illegal character at line {line}: {c}")
             case 53:
                 tk_value = tk_value[:-1]
-                tk = Token('ENTAO', tk_value)
+                tk = Token('ENTAO', tk_value, 'entao')
                 pos -= 2
                 return tk
             case 54:
@@ -526,7 +526,7 @@ def get_nex_token(info):
 
             case 57:
                 tk_value = tk_value[:-1]
-                tk = Token('INT', tk_value)
+                tk = Token('INT', tk_value, 'int')
                 pos -= 2
                 return tk
             case 58:
@@ -567,7 +567,7 @@ def get_nex_token(info):
                     raise Exception(f"Illegal character at line {line}: {c}")
             case 62:
                 tk_value = tk_value[:-1]
-                tk = Token('CHAR', tk_value)
+                tk = Token('CHAR', tk_value, 'char')
                 pos -= 2
                 return tk
             case 63:
@@ -602,7 +602,7 @@ def get_nex_token(info):
                     raise Exception(f"Illegal character at line {line}: {c}")
             case 66:
                 tk_value = tk_value[:-1]
-                tk = Token('ATE', tk_value)
+                tk = Token('ATE', tk_value, 'ate')
                 pos -= 2
                 return tk
             case 67:
@@ -616,7 +616,7 @@ def get_nex_token(info):
                     raise Exception(f"Illegal character at line {line}: {c}")
             case 68:
                 tk_value = tk_value[:-1]
-                tk = Token('ID', tk_value)
+                tk = Token('ID', tk_value, 'id')
                 pos -= 2
                 return tk
             case 69:
@@ -642,7 +642,7 @@ def get_nex_token(info):
                     raise Exception(f"Illegal character at line {line}: {c}")
             case 71:
                 tk_value = tk_value[:-1]
-                tk = Token('SE', tk_value)
+                tk = Token('SE', tk_value, 'se')
                 pos -= 2
                 return tk
             case 72:
@@ -674,7 +674,7 @@ def get_nex_token(info):
                     raise Exception(f"Illegal character at line {line}: {c}")
             case 75:
                 tk_value = tk_value[:-1]
-                tk = Token('SENAO', tk_value)
+                tk = Token('SENAO', tk_value, 'senao')
                 pos -= 2
                 return tk
             case 76:
@@ -757,7 +757,7 @@ def get_nex_token(info):
                     raise Exception(f"Illegal character at line {line}: {c}")
             case 84:
                 tk_value = tk_value[:-1]
-                tk = Token('FUNCTION', tk_value)
+                tk = Token('FUNCTION', tk_value, 'function')
                 pos -= 2
                 return tk
             case 85:
@@ -789,7 +789,7 @@ def get_nex_token(info):
                     raise Exception(f"Illegal character at line {line}: {c}")
             case 88:
                 tk_value = tk_value[:-1]
-                tk = Token('FACA', tk_value)
+                tk = Token('FACA', tk_value, 'faca')
                 pos -= 2
                 return tk
             case 89:
@@ -830,7 +830,7 @@ def get_nex_token(info):
                     raise Exception(f"Illegal character at line {line}: {c}")
             case 93:
                 tk_value = tk_value[:-1]
-                tk = Token('FLOAT', tk_value)
+                tk = Token('FLOAT', tk_value, 'float')
                 pos -= 2
                 return tk
             case 94:
@@ -889,7 +889,7 @@ def get_nex_token(info):
                     raise Exception(f"Illegal character at line {line}: {c}")
             case 100:
                 tk_value = tk_value[:-1]
-                tk = Token('REPITA', tk_value)
+                tk = Token('REPITA', tk_value, 'repita')
                 pos -= 2
                 return tk
 
