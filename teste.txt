@@ -1,4 +1,1 @@
-r1 = 2
-b = 6
-letra = b + a
-a
+function test () { int: a ; a = 5 ;}

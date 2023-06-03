@@ -12,6 +12,13 @@ def main():
         pprint(test)
         test = lexico.get_nex_token(info)
         pprint(test)
+        test = lexico.get_nex_token(info)
+        pprint(test)
+        test = lexico.get_nex_token(info)
+        pprint(test)
+        test = lexico.get_nex_token(info)
+        pprint(test)
+
     except Exception as ve:
         return str(ve)
 
