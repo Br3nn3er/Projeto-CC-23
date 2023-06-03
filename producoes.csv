@@ -2,7 +2,7 @@
 "2",{ declaracoes comandos }
 "3",declaracao declaracoes
 "4","vazio"
-"5","tipo: lista_variaveis ;"
+"5",tipo : lista_variaveis ;
 "6","int"
 "7","float"
 "8","char"
@@ -13,7 +13,7 @@
 "13","condicional"
 "14","repeticao"
 "15","repeticao2"
-"16","id = expressão_simples ;"
+"16",id = expressao_simples ;
 "17",expressao_simples expressao’
 "18",op_relacional expressao_simples
 "19","<"
