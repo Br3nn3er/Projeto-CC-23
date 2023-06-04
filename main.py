@@ -1,26 +1,17 @@
 import sys
 import lexico
+import sintatico
 from pprint import pprint
 
 
 def main():
-    info = lexico.ler_arquivo('teste.txt')
-    try:
-        test = lexico.get_nex_token(info)
-        pprint(test)
-        test = lexico.get_nex_token(info)
-        pprint(test)
-        test = lexico.get_nex_token(info)
-        pprint(test)
-        test = lexico.get_nex_token(info)
-        pprint(test)
-        test = lexico.get_nex_token(info)
-        pprint(test)
-        test = lexico.get_nex_token(info)
-        pprint(test)
+    predictive_table = "tabelaAnalisePreditiva.csv"
+    productions_vector = "producoes.csv"
+    expression = lexico.ler_arquivo('teste.txt')
 
-    except Exception as ve:
-        return str(ve)
+    parser = sintatico.Sintatico(predictive_table, productions_vector)
+
+    parser.parse(expression)
 
 
 if __name__ == "__main__":

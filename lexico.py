@@ -151,7 +151,7 @@ def get_nex_token(info):
                         line += 1
                     state = 30
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 1:
                 tk = Token('MAIS', tk_value, '+')
                 pos -= 1
@@ -172,7 +172,7 @@ def get_nex_token(info):
                     state = 5
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 5:
                 tk_value = tk_value[:-1]
                 tk = Token('DIV', tk_value, '/')
@@ -186,13 +186,13 @@ def get_nex_token(info):
                     state = 7
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 7:
                 if c == '/':
                     state = 8
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 8:
                 tk = Token('COMENTARIO', tk_value, 'comment')
                 pos -= 1
@@ -242,7 +242,7 @@ def get_nex_token(info):
                     state = 19
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 19:
                 tk_value = tk_value[:-1]
                 tk = Token('MAIOR', tk_value, '>')
@@ -263,7 +263,7 @@ def get_nex_token(info):
                     state = 22
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 22:
                 tk_value = tk_value[:-1]
                 tk = Token('MENOR', tk_value, '<')
@@ -290,13 +290,13 @@ def get_nex_token(info):
                     state = 28
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 28:
                 if c == '\'':
                     state = 28
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 29:
                 tk_value = tk_value[:-1]
                 tk = Token('CARACTERE', tk_value, 'caracter')
@@ -313,7 +313,7 @@ def get_nex_token(info):
                     state = 31
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 31:
                 tk_value = tk_value[:-1]
                 tk = Token('WS', tk_value, 'ws')
@@ -335,7 +335,7 @@ def get_nex_token(info):
                     state = 33
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 33:
                 tk_value = tk_value[:-1]
                 tk = Token('INTEIRO', tk_value, 'numero')
@@ -347,7 +347,7 @@ def get_nex_token(info):
                     state = 35
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 35:
                 if verifica_numero(c):
                     state = 35
@@ -356,7 +356,7 @@ def get_nex_token(info):
                     state = 37
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 36:
                 tk_value = tk_value[:-1]
                 tk = Token('DECIMAL', tk_value, 'numero')
@@ -371,13 +371,13 @@ def get_nex_token(info):
                     state = 39
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 38:
                 if verifica_numero(c):
                     state = 39
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 39:
                 if verifica_numero(c):
                     state = 39
@@ -386,7 +386,7 @@ def get_nex_token(info):
                     state = 40
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 40:
                 tk_value = tk_value[:-1]
                 tk = Token('CIENTIFICO', tk_value, 'numero')
@@ -404,7 +404,7 @@ def get_nex_token(info):
                     state = 68
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 42:
                 if c == 'q':
                     state = 43
@@ -419,7 +419,7 @@ def get_nex_token(info):
                     state = 68
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 43:
                 if c == 'u':
                     state = 44
@@ -431,7 +431,7 @@ def get_nex_token(info):
                     state = 68
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 44:
                 if c == 'a':
                     state = 45
@@ -443,7 +443,7 @@ def get_nex_token(info):
                     state = 68
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 45:
                 if c == 'n':
                     state = 46
@@ -455,7 +455,7 @@ def get_nex_token(info):
                     state = 68
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 46:
                 if c == 't':
                     state = 47
@@ -467,7 +467,7 @@ def get_nex_token(info):
                     state = 68
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 47:
                 if c == 'o':
                     state = 48
@@ -479,7 +479,7 @@ def get_nex_token(info):
                     state = 68
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 48:
                 if not verifica_numero(c) or not verifica_letra(c):
                     state = 49
@@ -488,7 +488,7 @@ def get_nex_token(info):
                     state = 67
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 49:
                 tk_value = tk_value[:-1]
                 tk = Token('ENQUANTO', tk_value, 'enquanto')
@@ -505,7 +505,7 @@ def get_nex_token(info):
                     state = 68
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 51:
                 if c == 'o':
                     state = 52
@@ -517,7 +517,7 @@ def get_nex_token(info):
                     state = 68
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 52:
                 if not verifica_numero(c) or not verifica_letra(c):
                     state = 53
@@ -526,7 +526,7 @@ def get_nex_token(info):
                     state = 67
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 53:
                 tk_value = tk_value[:-1]
                 tk = Token('ENTAO', tk_value, 'entao')
@@ -543,7 +543,7 @@ def get_nex_token(info):
                     state = 68
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 55:
                 if c == 't':
                     state = 56
@@ -555,7 +555,7 @@ def get_nex_token(info):
                     state = 68
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 56:
                 if not verifica_numero(c) or not verifica_letra(c):
                     state = 57
@@ -564,7 +564,7 @@ def get_nex_token(info):
                     state = 67
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
 
             case 57:
                 tk_value = tk_value[:-1]
@@ -582,7 +582,7 @@ def get_nex_token(info):
                     state = 68
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 59:
                 if c == 'a':
                     state = 60
@@ -594,7 +594,7 @@ def get_nex_token(info):
                     state = 68
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 60:
                 if c == 'r':
                     state = 61
@@ -606,7 +606,7 @@ def get_nex_token(info):
                     state = 68
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 61:
                 if not verifica_numero(c) or not verifica_letra(c):
                     state = 62
@@ -615,7 +615,7 @@ def get_nex_token(info):
                     state = 67
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 62:
                 tk_value = tk_value[:-1]
                 tk = Token('CHAR', tk_value, 'char')
@@ -632,7 +632,7 @@ def get_nex_token(info):
                     state = 68
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 64:
                 if c == 'e':
                     state = 65
@@ -644,7 +644,7 @@ def get_nex_token(info):
                     state = 68
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 65:
                 if not verifica_numero(c) or not verifica_letra(c):
                     state = 66
@@ -653,7 +653,7 @@ def get_nex_token(info):
                     state = 67
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 66:
                 tk_value = tk_value[:-1]
                 tk = Token('ATE', tk_value, 'ate')
@@ -667,7 +667,7 @@ def get_nex_token(info):
                     state = 68
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 68:
                 tk_value = tk_value[:-1]
                 tk = Token('ID', tk_value, 'id')
@@ -685,7 +685,7 @@ def get_nex_token(info):
                     state = 68
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 70:
                 if c == 'n':
                     state = 72
@@ -697,7 +697,7 @@ def get_nex_token(info):
                     state = 67
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 71:
                 tk_value = tk_value[:-1]
                 tk = Token('SE', tk_value, 'se')
@@ -714,7 +714,7 @@ def get_nex_token(info):
                     state = 68
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 73:
                 if c == 'o':
                     state = 73
@@ -726,7 +726,7 @@ def get_nex_token(info):
                     state = 68
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 74:
                 if not verifica_numero(c) or not verifica_letra(c):
                     state = 75
@@ -735,7 +735,7 @@ def get_nex_token(info):
                     state = 67
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 75:
                 tk_value = tk_value[:-1]
                 tk = Token('SENAO', tk_value, 'senao')
@@ -758,7 +758,7 @@ def get_nex_token(info):
                     state = 68
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 77:
                 if c == 'n':
                     state = 78
@@ -770,7 +770,7 @@ def get_nex_token(info):
                     state = 68
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 78:
                 if c == 'c':
                     state = 79
@@ -782,7 +782,7 @@ def get_nex_token(info):
                     state = 68
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 79:
                 if c == 't':
                     state = 80
@@ -794,7 +794,7 @@ def get_nex_token(info):
                     state = 68
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 80:
                 if c == 'i':
                     state = 81
@@ -806,7 +806,7 @@ def get_nex_token(info):
                     state = 68
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 81:
                 if c == 'o':
                     state = 82
@@ -818,7 +818,7 @@ def get_nex_token(info):
                     state = 68
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 82:
                 if c == 'n':
                     state = 83
@@ -830,7 +830,7 @@ def get_nex_token(info):
                     state = 68
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 83:
                 if not verifica_numero(c) or not verifica_letra(c):
                     state = 84
@@ -839,7 +839,7 @@ def get_nex_token(info):
                     state = 67
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 84:
                 tk_value = tk_value[:-1]
                 tk = Token('FUNCTION', tk_value, 'function')
@@ -856,7 +856,7 @@ def get_nex_token(info):
                     state = 68
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 86:
                 if c == 'a':
                     state = 87
@@ -868,7 +868,7 @@ def get_nex_token(info):
                     state = 68
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 87:
                 if not verifica_numero(c) or not verifica_letra(c):
                     state = 88
@@ -877,7 +877,7 @@ def get_nex_token(info):
                     state = 67
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 88:
                 tk_value = tk_value[:-1]
                 tk = Token('FACA', tk_value, 'faca')
@@ -894,7 +894,7 @@ def get_nex_token(info):
                     state = 68
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 90:
                 if c == 'a':
                     state = 91
@@ -906,7 +906,7 @@ def get_nex_token(info):
                     state = 68
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 91:
                 if c == 't':
                     state = 92
@@ -918,7 +918,7 @@ def get_nex_token(info):
                     state = 68
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 92:
                 if not verifica_numero(c) or not verifica_letra(c):
                     state = 93
@@ -927,7 +927,7 @@ def get_nex_token(info):
                     state = 67
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 93:
                 tk_value = tk_value[:-1]
                 tk = Token('FLOAT', tk_value, 'float')
@@ -944,7 +944,7 @@ def get_nex_token(info):
                     state = 68
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 95:
                 if c == 'p':
                     state = 96
@@ -956,7 +956,7 @@ def get_nex_token(info):
                     state = 68
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 96:
                 if c == 'i':
                     state = 97
@@ -968,7 +968,7 @@ def get_nex_token(info):
                     state = 68
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 97:
                 if c == 't':
                     state = 98
@@ -980,7 +980,7 @@ def get_nex_token(info):
                     state = 68
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 98:
                 if c == 'a':
                     state = 92
@@ -992,7 +992,7 @@ def get_nex_token(info):
                     state = 68
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 99:
                 if not verifica_numero(c) or not verifica_letra(c):
                     state = 100
@@ -1001,23 +1001,15 @@ def get_nex_token(info):
                     state = 67
                     tk_value += c
                 else:
-                    raise Exception(f"Illegal character at line {line}: {c}")
+                    raise Exception(f"Lexical Exception: Illegal character at line {line}: {c}")
             case 100:
                 tk_value = tk_value[:-1]
                 tk = Token('REPITA', tk_value, 'repita')
                 pos -= 2
                 return tk
 
-        # if pos >= len(info):
-        #     break
-        # pos += 1
 
-    # return None
 
-# class Lexico:
-#     pass
-#
-#
 # info = '7I7'
 # # while True:
 # lex = Lexico()

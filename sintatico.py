@@ -16,7 +16,6 @@ class Sintatico:
                 self.table[non_terminal] = {}
                 for i in range(1, len(row)):
                     terminal = headers[i]
-                    # print(terminal)
                     production = row[i]
                     self.table[non_terminal][terminal] = production
 
@@ -31,12 +30,12 @@ class Sintatico:
         self.stack = []
         self.stack.append("S")  # Símbolo inicial da gramática
         self.current_token = lex.get_nex_token(expression)
-        lista=[]
+        lista = []
         while len(self.stack) > 0:
             top = self.stack[-1]
 
             if top in self.table and self.current_token.sint.lower() in self.table[top]:
-                la = la + top+'/'
+                la = la + top + '/'
                 production = self.table[top][self.current_token.sint.lower()]
                 next_symbl = self.vector[production]
                 self.stack.pop()
@@ -52,11 +51,11 @@ class Sintatico:
                         self.stack.append(production)
 
             elif top == self.current_token.sint.lower():
-                ## nos folhas
                 self.stack.pop()
                 self.current_token = lex.get_nex_token(expression)
             else:
-                raise Exception("Erro de sintaxe. Token inesperado: " + self.current_token.sint.lower())
+                raise Exception(
+                    "Syntactic Exception: Token inesperado: " + self.current_token.sint.lower() + ', para os caracteres: ' + self.current_token.value + ' na linha: ' + lex.line)
 
         if self.current_token is None:
             print("Análise sintática concluída com sucesso.")
@@ -66,11 +65,3 @@ class Sintatico:
         else:
             raise Exception("Erro de sintaxe. Fim inesperado da expressão.")
 
-
-# Exemplo de uso
-predictive_table = "tabelaAnalisePreditiva.csv"
-productions_vector = "producoes.csv"
-expression = lex.ler_arquivo('teste.txt')
-
-parser = Sintatico(predictive_table, productions_vector)
-parser.parse(expression)
